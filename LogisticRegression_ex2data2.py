@@ -23,7 +23,8 @@ while lmbda > 0:
         best_acc = acc
         best_lambda = lmbda
     lmbda -= 0.01
-print(best_acc,best_lambda)
+
+print('Accuracy :',best_acc,'(for regularisation lambda = ',best_lambda,')')
 
 # Logistic model fit
 model = LogisticRegression(max_iter=1000,C = 1/best_lambda)
@@ -42,6 +43,8 @@ plt.figure(1)
 plt.scatter(X[:,0],X[:,1],color='red',label='True Negatives')
 plt.scatter(true_pos_X[:,0],true_pos_X[:,1],color='green',label='True Positives')
 plt.scatter(pos_X_pred[:,0],pos_X_pred[:,1],marker='x',color='black',label='Predicted Positives')
+plt.xlabel('X1')
+plt.ylabel('X2')
 plt.legend()
 plt.show()
 
@@ -50,5 +53,7 @@ plt.figure(2)
 plt.scatter(X[:,0],initial_y_pred,color='red',label='True Negatives')
 plt.scatter(true_pos_X[:,0],initial_y_pred[y==1],color='green',label='True Positives')
 plt.plot(X[:,0],np.zeros(np.shape(X)[0]),label='Y prediction = 0')
+plt.xlabel('X1')
+plt.ylabel('Y predictions')
 plt.legend()
 plt.show()
